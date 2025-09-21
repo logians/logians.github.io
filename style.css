@@ -429,12 +429,12 @@ nav a.active {
 }
 
 .planet-footer {
-  background: url("images/planet-surface.png") repeat-y center top;
-  background-size: cover;
+  background: url("images/planet-surface.png") no-repeat right -23px bottom; /* 10px masuk ke kanan */
+  background-size: 120% 50vh;
   background-attachment: fixed;
   text-align: center;
   color: #fff;
-  min-height: 100vh;   /* desktop full screen */
+  min-height: 100vh;
   position: relative;
   z-index: 0;
   padding: 40px 20px;
@@ -453,6 +453,7 @@ nav a.active {
   border-radius: 50px;
   font-size: 14px;
   letter-spacing: 2px;
+  max-width: 90%; /* biar gak kepanjangan di HP */
   animation: float 3s ease-in-out infinite;
 }
 
@@ -460,7 +461,7 @@ nav a.active {
 @media (max-width: 992px) {
   .planet-footer {
     min-height: 300px;       /* cukup tinggi, gak full screen */
-    background-size: cover;
+    background-size: 120% 30vh; /* Lebih lebar 120% biar penuh */
     background-attachment: scroll; /* fix bug parallax di tablet */
     padding: 30px 15px 20px 15px;
   }
@@ -470,14 +471,15 @@ nav a.active {
 @media (max-width: 600px) {
   .planet-footer {
     min-height: 220px;       /* lebih kecil untuk HP */
-    background-size: cover;
+    background-size: 120% 30vh; /* Lebih lebar 120% biar penuh */
     background-attachment: scroll; /* nonaktifin fixed di mobile */
     padding: 20px 10px 15px 10px;
   }
 
   .planet-footer p {
-    font-size: 12px;         /* text lebih kecil di HP */
-    padding: 10px 20px;
+    font-size: 11px;       /* lebih kecil lagi */
+    padding: 10px 20px;    /* lebih compact */
+    bottom: 15px;          /* posisinya lebih rapat */
   }
 }
 
