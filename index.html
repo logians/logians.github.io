@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logians - Desain Grafis & Web</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Background -->
+  <div class="galaxy-bg"></div>
+  <div class="stars"></div>
+  <div class="milky-way"></div>
+
+  <!-- Planets -->
+  <div class="planet-layer" id="planetLayer">
+    <div class="planet-big"></div>
+    <div class="planet-small"></div>
+  </div>
+
+  <!-- Astronaut -->
+  <div class="astronaut-layer">
+    <img src="Image.png" alt="Astronaut" class="astronaut-image" id="astronautImage">
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">LOGIANS</div>
+    <nav>
+      <ul>
+        <li><a href="#" class="active" data-section="home">Home</a></li>
+        <li><a href="#" data-section="services">Services</a></li>
+        <li><a href="#" data-section="pricing">List Harga</a></li>
+        <li><a href="#" data-section="portfolio">Portofolio</a></li>
+        <li><a href="#" data-section="testimonials">Testimoni</a></li>
+        <li><a href="#" data-section="team">Team</a></li>
+        <li><a href="#" data-section="contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Content -->
+  <div class="content-layer">
+    <!-- Hero Section -->
+    <section id="home" class="hero active">
+      <div class="hero-content">
+        <h1 class="hero-title">LOGIANS</h1>
+        <!-- Animasi ketik -->
+        <p id="typingText" class="typing-text">Kami menyediakan jasa Desain Grafis dan pembuatan Website untuk usaha/bisnis anda.</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-primary" data-section="services">Lihat Layanan</a>
+          <a href="#" class="btn btn-secondary" data-section="contact">Konsultasi Gratis</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section">
+      <h2>Layanan Kami</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>Desain Grafis</h3>
+          <p>Logo, banner, flyer, brosur, ID card, dan lainnya.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💻</div>
+          <h3>Web Design</h3>
+          <p>Website sesuai kebutuhan dengan UI/UX modern dan responsif.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">📹</div>
+          <h3>Video Editing</h3>
+          <p>Editing video profesional untuk bisnis dan momen spesial anda.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section">
+      <h2>List Harga</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Logo UMKM</h3>
+          <p>Mulai dari Rp 50.000 — 1 logo + 1 revisi.</p>
+        </div>
+        <div class="service-card">
+          <h3>Logo Premium</h3>
+          <p>Dengan file master + beberapa revisi sesuai paket.</p>
+        </div>
+        <div class="service-card">
+          <h3>Logo Branding / PT</h3>
+          <p>Paket logo perusahaan + format cetak & digital resolusi tinggi.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" class="section">
+      <h2>Portofolio</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Dealer Suzuki Cimone</h3>
+          <p>Branding & desain grafis promosi.</p>
+        </div>
+        <div class="service-card">
+          <h3>Klinik Prita Medika</h3>
+          <p>Identitas visual & kebutuhan media sosial.</p>
+        </div>
+        <div class="service-card">
+          <h3>Wijaya Travel Agen</h3>
+          <p>Logo dan media promosi digital.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section">
+      <h2>Testimoni</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <p>"Layanan cepat dan hasil desain memuaskan!"</p>
+          <p><strong>- Klien A</strong></p>
+        </div>
+        <div class="service-card">
+          <p>"Desain sesuai ekspektasi, revisi cepat, recommended."</p>
+          <p><strong>- Klien B</strong></p>
+        </div>
+        <div class="service-card">
+          <p>"Harga terjangkau dengan kualitas premium."</p>
+          <p><strong>- Klien C</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="section">
+      <h2>Tim Kami</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Virdos Kurniawan</h3>
+          <p>Artist</p>
+        </div>
+        <div class="service-card">
+          <h3>Eki Ifnu Aji</h3>
+          <p>Developer</p>
+        </div>
+        <div class="service-card">
+          <h3>Didit Ramadhan</h3>
+          <p>Graphic Designer</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <h2>Hubungi Kami</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Email</h3>
+                <p>contact@logians.net</p>
+            </div>
+            <div class="service-card">
+                <h3>WhatsApp</h3>
+                <p>+62 812 8201 1123</p>
+            </div>
+            <div class="service-card">
+                <h3>Alamat</h3>
+                <p>Jl. Gajah Tunggal No.40, Tangerang, Banten</p>
+            </div>
+        </div>
+    </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
