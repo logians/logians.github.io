@@ -429,7 +429,7 @@ nav a.active {
 }
 
 .planet-footer {
-  background: url("../logians/images/planet-surface.png") repeat-y center top;
+  background: url("../images/planet-surface.png") repeat-y center top;
   background-size: cover;
   background-attachment: fixed;
   text-align: center;
