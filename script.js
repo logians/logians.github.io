@@ -10,6 +10,28 @@ function throttle(fn, limit) {
   };
 }
 
+let astronautSide = 'center';
+
+function toggleAstronautSide() {
+  const astronautImage = document.getElementById('astronautImage');
+  if (!astronautImage) return;
+
+  // cuma jalan di tablet & hp
+  if (window.innerWidth <= 992) {
+    if (astronautSide === 'left') {
+      astronautImage.style.left = '70%'; // pindah kanan
+      astronautSide = 'right';
+    } else {
+      astronautImage.style.left = '30%'; // pindah kiri
+      astronautSide = 'left';
+    }
+  } else {
+    // desktop biarin default (kanan)
+    astronautImage.style.left = '75%';
+    astronautSide = 'center';
+  }
+}
+
 // Create stars (lebih banyak & merata)
 function createStars(num = 200) {
   const starsContainer = document.querySelector('.stars');
@@ -131,6 +153,7 @@ function navigateToSection(sectionId, clickedElement) {
   }
 
   moveAstronautOnNav();
+  toggleAstronautSide();
 }
 
 // Mousemove parallax

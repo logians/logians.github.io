@@ -102,15 +102,85 @@ body {
 }
 
 .planet-big {
-  position: absolute;
-  width: 400px;
-  height: 400px;
+  width: 200px; /* Kecil di mobile */
+  height: 200px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #6c5ce7, #2d3436);
-  top: 25%;
-  left: calc(50% - 200px);
-  box-shadow: 0 0 80px rgba(108, 92, 231, 0.7);
-  animation: floatPlanet 20s ease-in-out infinite;
+  background: radial-gradient(circle at 30% 30%, #ffcc66, #cc6600);
+  position: absolute;
+  top: 50%;
+  left: 5%; /* Dekat pinggir di mobile */
+  transform: translateY(-50%);
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.planet-big::before,
+.planet-big::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.2);
+}
+
+.planet-big::before {
+  width: 40px;
+  height: 40px;
+  top: 35px;
+  left: 50px;
+}
+
+.planet-big::after {
+  width: 25px;
+  height: 25px;
+  top: 110px;
+  left: 80px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .planet-big {
+    width: 280px;
+    height: 280px;
+    left: 10%;
+  }
+  
+  .planet-big::before {
+    width: 55px;
+    height: 55px;
+    top: 45px;
+    left: 70px;
+  }
+  
+  .planet-big::after {
+    width: 35px;
+    height: 35px;
+    top: 130px;
+    left: 110px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .planet-big {
+    width: 350px;
+    height: 350px;
+    left: 12%; /* Agak ke tengah dari pinggir */
+  }
+  
+  .planet-big::before {
+    width: 75px;
+    height: 75px;
+    top: 65px;
+    left: 90px;
+  }
+  
+  .planet-big::after {
+    width: 50px;
+    height: 50px;
+    top: 175px;
+    left: 140px;
+  }
 }
 
 .planet-small {
@@ -348,87 +418,194 @@ nav a.active {
 
 .service-icon {
   font-size: 3rem;
-  margin-bottom: 20px;
+  margin-bottom: 1git 0px;
   color: #00ffff;
 }
 
-/* ========== RESPONSIVE ========== */
+#contact {
+  margin-bottom: -80px; /* naikin footer biar gambar atas keliatan */
+  position: relative;
+  z-index: 1;
+}
+
+.planet-footer {
+  background: url("../logians/images/planet-surface.png") repeat-y center top;
+  background-size: cover;
+  background-attachment: fixed;
+  text-align: center;
+  color: #fff;
+  min-height: 100vh;   /* desktop full screen */
+  position: relative;
+  z-index: 0;
+  padding: 40px 20px;
+}
+
+.planet-footer p {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 15px 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  animation: float 3s ease-in-out infinite;
+}
 
 /* Tablet */
 @media (max-width: 992px) {
-  nav ul {
-    gap: 10px;
-  }
-
-  .hero-title {
-    font-size: 2.2rem;
-  }
-
-  .typing-text {
-    font-size: 1rem;
-    max-width: 90%;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-
-  .astronaut-image {
-    width: 160px;
+  .planet-footer {
+    min-height: 300px;       /* cukup tinggi, gak full screen */
+    background-size: cover;
+    background-attachment: scroll; /* fix bug parallax di tablet */
+    padding: 30px 15px 20px 15px;
   }
 }
 
 /* Mobile */
 @media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
+  .planet-footer {
+    min-height: 220px;       /* lebih kecil untuk HP */
+    background-size: cover;
+    background-attachment: scroll; /* nonaktifin fixed di mobile */
+    padding: 20px 10px 15px 10px;
   }
 
-  nav ul {
-    flex-wrap: wrap;
+  .planet-footer p {
+    font-size: 12px;         /* text lebih kecil di HP */
+    padding: 10px 20px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  /* Hero */
+  .hero-title {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+  .typing-text {
+    font-size: 1rem;
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  .cta-buttons {
     justify-content: center;
-    gap: 6px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .cta-buttons a {
+    font-size: 0.95rem;
+    padding: 8px 16px;
   }
 
+  /* Astronaut ikut layar (lebih besar dikit dari sebelumnya) */
+  .astronaut-image {
+    width: 230px;          /* sebelumnya 200px → dibesarin */
+    height: auto;          
+    top: 60%;              
+    left: 50%;             
+    transform: translate(-50%, -50%);
+  }
+
+  /* Planet sedikit lebih besar */
+  .planet-big {
+    width: 240px;          /* sebelumnya 220px → dibesarin dikit */
+    height: 240px;
+  }
+  .planet-small {
+    width: 100px;
+    height: 100px;
+  }
+
+  /* Comet lebih pendek & tipis */
+  .comet {
+    width: 90px;           /* default 120px */
+    height: 2px;           /* default 3px */
+  }
+
+  /* Navbar menyesuaikan layar */
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;          
+    justify-content: center;
+    gap: 10px;
+    padding: 0;
+    margin: 10px 0 0 0;
+  }
   nav ul li a {
-    font-size: 0.85rem;
-    padding: 4px 8px;
+    font-size: 0.9rem;
+    padding: 6px 10px;
   }
+}
 
+/* Mobile */
+@media (max-width: 600px) {
+  /* Hero */
   .hero-title {
     font-size: 1.8rem;
     text-align: center;
   }
-
   .typing-text {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     text-align: center;
+    max-width: 95%;
     margin: 0 auto;
   }
-
   .cta-buttons {
     flex-direction: column;
     gap: 8px;
+    align-items: center;
+  }
+  .cta-buttons a {
+    font-size: 0.85rem;
+    padding: 6px 14px;
   }
 
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .service-card {
-    padding: 15px;
-    text-align: center;
-  }
-
+  /* Astronaut ikut layar (lebih besar dikit dari sebelumnya) */
   .astronaut-image {
-    width: 120px;
-    bottom: 15%;
-    right: 10%;
+    width: 170px;          /* sebelumnya 140px → dibesarin */
+    height: auto;         
+    top: 65%;             
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Planet sedikit lebih besar */
+  .planet-big {
+    width: 180px;          /* sebelumnya 150px → dibesarin */
+    height: 180px;
+  }
+  .planet-small {
+    width: 75px;
+    height: 75px;
+  }
+
+  /* Comet lebih kecil lagi */
+  .comet {
+    width: 70px;           /* default 120px */
+    height: 2px;
+  }
+
+  /* Navbar menyesuaikan layar */
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+  }
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  nav ul li a {
+    font-size: 0.8rem;
+    padding: 4px 8px;
   }
 }
