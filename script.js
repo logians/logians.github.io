@@ -57,11 +57,11 @@ function init() {
   scene.add(new THREE.AmbientLight(0x222222));
 
   // Glow / Atmosphere
-  const glow_geometry = new THREE.SphereGeometry(33, 64, 64); // Radius diperbesar dari 33 ke 34
+  const glow_geometry = new THREE.SphereGeometry(33, 64, 64);
   const glow_material = new THREE.ShaderMaterial({
     uniforms: {
       "c": { type: "f", value: 0.5 },
-      "p": { type: "f", value: 2.0 }, // Dikurangi dari 4.0 ke 2.0 untuk glow lebih tebal
+      "p": { type: "f", value: 2.0 },
       glowColor: { type: "c", value: new THREE.Color(0x00aaff) },
       viewVector: { type: "v3", value: camera.position }
     },
@@ -300,14 +300,16 @@ function navigateToSection(sectionId, clickedElement) {
   document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
   if (clickedElement) clickedElement.classList.add('active');
 
-  document.querySelectorAll('.hero, .section').forEach(el => el.classList.remove('active'));
   const target = document.getElementById(sectionId);
   if (target) {
-    target.classList.add('active');
     const header = document.querySelector('header');
     const offset = header ? header.offsetHeight + 10 : 0;
     const topPos = target.getBoundingClientRect().top + window.pageYOffset - offset;
     window.scrollTo({ top: topPos, behavior: 'smooth' });
+
+    // Tambahkan kelas active hanya ke target section
+    document.querySelectorAll('.hero, .section').forEach(el => el.classList.remove('active'));
+    target.classList.add('active');
   }
 
   moveAstronautOnNav();
@@ -357,6 +359,17 @@ function enableScrollParallax() {
     if (stars) stars.style.transform = `translateY(${rate * 0.6}px)`;
     if (planetLayer) planetLayer.style.transform = `translateY(${scrolled * -0.03}px)`;
   }, 20));
+
+  // Tambahkan IntersectionObserver untuk animasi section
+  const sections = document.querySelectorAll('.hero, .section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.1 });
+  sections.forEach(section => observer.observe(section));
 }
 
 // Nav listeners
@@ -369,6 +382,23 @@ function attachNavListeners() {
       if (section) navigateToSection(section, this);
     });
   });
+
+  // Tambahkan event listener untuk dropdown
+  const dropdownToggle = document.querySelector('.dropdown-toggle');
+  const dropdown = document.querySelector('.dropdown');
+  if (dropdownToggle && dropdown) {
+    dropdownToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      dropdown.classList.toggle('active');
+    });
+
+    // Tutup dropdown jika klik di luar
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('active');
+      }
+    });
+  }
 }
 
 // Init
@@ -393,4 +423,19 @@ document.addEventListener('DOMContentLoaded', () => {
       typeLoop();
     }, 300);
   });
+
+  const slider = document.querySelector(".slider");
+  const slides = document.querySelectorAll(".slide");
+  let index = 0;
+
+  function showNextSlide() {
+    index++;
+    if (index >= slides.length) {
+      index = 0;
+    }
+    slider.style.transform = `translateX(${-index * 100}%)`;
+  }
+
+  // jalan otomatis tiap 3 detik
+  setInterval(showNextSlide, 3000);
 });
