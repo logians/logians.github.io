@@ -101,85 +101,38 @@ body {
   transition: transform 1s ease;
 }
 
-.planet-big {
-  width: 200px; /* Kecil di mobile */
-  height: 200px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #ffcc66, #cc6600);
+#earth-container {
   position: absolute;
   top: 50%;
-  left: 5%; /* Dekat pinggir di mobile */
+  left: 2%; /* posisi default desktop */
   transform: translateY(-50%);
-  overflow: hidden;
+  width: 850px;  /* Diperbesar dari 350px */
+  height: 850px;
   z-index: 1;
-  transition: all 0.3s ease;
+  aspect-ratio: 1 / 1;  /* CSS modern */
 }
 
-.planet-big::before,
-.planet-big::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.2);
-}
-
-.planet-big::before {
-  width: 40px;
-  height: 40px;
-  top: 35px;
-  left: 50px;
-}
-
-.planet-big::after {
-  width: 25px;
-  height: 25px;
-  top: 110px;
-  left: 80px;
+#earth-container canvas {
+  width: 100%;
+  height: 100%;  /* Pastikan canvas mengisi container penuh */
+  display: block;
 }
 
 /* Tablet */
-@media (min-width: 768px) {
-  .planet-big {
-    width: 280px;
-    height: 280px;
+@media (min-width: 768px) and (max-width: 1023px) {
+  #earth-container {
+    width: 360px;  /* Diperbesar dari 280px */
+    height: 360px;
     left: 10%;
-  }
-  
-  .planet-big::before {
-    width: 55px;
-    height: 55px;
-    top: 45px;
-    left: 70px;
-  }
-  
-  .planet-big::after {
-    width: 35px;
-    height: 35px;
-    top: 130px;
-    left: 110px;
   }
 }
 
-/* Desktop */
-@media (min-width: 1024px) {
-  .planet-big {
-    width: 350px;
-    height: 350px;
-    left: 12%; /* Agak ke tengah dari pinggir */
-  }
-  
-  .planet-big::before {
-    width: 75px;
-    height: 75px;
-    top: 65px;
-    left: 90px;
-  }
-  
-  .planet-big::after {
-    width: 50px;
-    height: 50px;
-    top: 175px;
-    left: 140px;
+/* Mobile */
+@media (max-width: 600px) {
+  #earth-container {
+    width: 260px;  /* Diperbesar dari 200px */
+    height: 260px;
+    left: 5%;
   }
 }
 
@@ -418,7 +371,7 @@ nav a.active {
 
 .service-icon {
   font-size: 3rem;
-  margin-bottom: 1git 0px;
+  margin-bottom: 10px;
   color: #00ffff;
 }
 

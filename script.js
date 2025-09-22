@@ -1,3 +1,162 @@
+var camera, scene, renderer;
+var earth, cloud, glow;
+var mouseDown = false, mouseX = 0, mouseY = 0;
+
+init();
+animate();
+
+function init() {
+  scene = new THREE.Scene();
+
+  // Renderer dulu
+  const container = document.getElementById("earth-container");
+  renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(container.clientWidth, container.clientHeight, false);
+
+  // Camera pakai container aspect
+  camera = new THREE.PerspectiveCamera(
+    45,
+    container.clientWidth / container.clientHeight,
+    1,
+    1000
+  );
+  camera.position.z = 180;
+
+  // Earth
+  const earth_texture = new THREE.TextureLoader().load("https://i.postimg.cc/ry0pcyyZ/earth.jpg");
+  const earth_bump = new THREE.TextureLoader().load("https://i.postimg.cc/mgrJfkBt/bump.jpg");
+  const earth_specular = new THREE.TextureLoader().load("https://i.postimg.cc/R06YhY3m/spec.jpg");
+
+  const earth_geometry = new THREE.SphereGeometry(30, 64, 64);
+  const earth_material = new THREE.MeshPhongMaterial({
+    shininess: 40,
+    bumpScale: 1,
+    map: earth_texture,
+    bumpMap: earth_bump,
+    specularMap: earth_specular
+  });
+  earth = new THREE.Mesh(earth_geometry, earth_material);
+  scene.add(earth);
+
+  // Clouds
+  const cloud_texture = new THREE.TextureLoader().load("https://i.postimg.cc/k4WhFtFh/cloud.png");
+  const cloud_geometry = new THREE.SphereGeometry(31, 64, 64);
+  const cloud_material = new THREE.MeshPhongMaterial({
+    map: cloud_texture,
+    transparent: true,
+    opacity: 0.4,
+    depthWrite: false
+  });
+  cloud = new THREE.Mesh(cloud_geometry, cloud_material);
+  scene.add(cloud);
+
+  // Lights
+  const pointLight = new THREE.PointLight(0xffffff, 1.2);
+  pointLight.position.set(-400, 100, 150);
+  scene.add(pointLight);
+  scene.add(new THREE.AmbientLight(0x222222));
+
+  // Glow / Atmosphere
+  const glow_geometry = new THREE.SphereGeometry(33, 64, 64); // Radius diperbesar dari 33 ke 34
+  const glow_material = new THREE.ShaderMaterial({
+    uniforms: {
+      "c": { type: "f", value: 0.5 },
+      "p": { type: "f", value: 2.0 }, // Dikurangi dari 4.0 ke 2.0 untuk glow lebih tebal
+      glowColor: { type: "c", value: new THREE.Color(0x00aaff) },
+      viewVector: { type: "v3", value: camera.position }
+    },
+    vertexShader: `
+      uniform vec3 viewVector;
+      uniform float c;
+      uniform float p;
+      varying float intensity;
+      void main() {
+        vec3 vNormal = normalize(normalMatrix * normal);
+        vec3 vNormel = normalize(normalMatrix * viewVector);
+        intensity = pow(c - dot(vNormal, vNormel), p);
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 glowColor;
+      varying float intensity;
+      void main() {
+        vec3 glow = glowColor * intensity;
+        gl_FragColor = vec4(glow, 1.0);
+      }
+    `,
+    side: THREE.BackSide,
+    blending: THREE.AdditiveBlending,
+    transparent: true
+  });
+  glow = new THREE.Mesh(glow_geometry, glow_material);
+  scene.add(glow);
+
+  // Append renderer
+  document.getElementById("earth-container").appendChild(renderer.domElement);
+
+  // Panggil resize untuk sync
+  onWindowResize();
+
+  // Events
+  window.addEventListener("resize", onWindowResize, false);
+  document.addEventListener("mousemove", onMouseMove, false);
+  document.addEventListener("mousedown", onMouseDown, false);
+  document.addEventListener("mouseup", onMouseUp, false);
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  earth.rotation.y += 0.001;
+  cloud.rotation.y += 0.001;
+
+  // Update glow supaya selalu menghadap kamera
+  glow.material.uniforms.viewVector.value =
+    new THREE.Vector3().subVectors(camera.position, earth.position);
+
+  renderer.render(scene, camera);
+}
+
+function onWindowResize() {
+  const container = document.getElementById("earth-container");
+  const width = container.clientWidth;
+  const height = container.clientHeight;
+
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(width, height, false);
+}
+
+function onMouseMove(evt) {
+  if (!mouseDown) return;
+  evt.preventDefault();
+  var deltaX = evt.clientX - mouseX,
+      deltaY = evt.clientY - mouseY;
+  mouseX = evt.clientX;
+  mouseY = evt.clientY;
+  rotateScene(deltaX, deltaY);
+}
+
+function onMouseDown(evt) {
+  evt.preventDefault();
+  mouseDown = true;
+  mouseX = evt.clientX;
+  mouseY = evt.clientY;
+}
+
+function onMouseUp(evt) {
+  evt.preventDefault();
+  mouseDown = false;
+}
+
+function rotateScene(deltaX, deltaY) {
+  earth.rotation.y += deltaX / 300;
+  earth.rotation.x += deltaY / 300;
+  cloud.rotation.y += deltaX / 300;
+  cloud.rotation.x += deltaY / 300;
+}
+
 // Utility: throttle
 function throttle(fn, limit) {
   let waiting = false;
@@ -61,7 +220,6 @@ function createStars(num = 200) {
     }
   }
 }
-
 
 // Create comet (sekali jatuh di awal)
 function createComet() {
