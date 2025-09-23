@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Logians - Desain Grafis & Web</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="logo.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
   <!-- Background -->
@@ -25,7 +27,7 @@
 
   <!-- Header -->
   <header>
-    <div class="logo">LOGIANS</div>
+    <img src="images/placeholder.png" alt="logians" width="150" height="50">
     <nav>
       <ul>
         <li><a href="#home" data-section="home" class="active">Home</a></li>
@@ -38,7 +40,12 @@
           </ul>
         </li>
         <li><a href="#testimonials" data-section="testimonials">Testimoni</a></li>
-        <li><a href="#team" data-section="team">Team</a></li>
+        <li class="dropdown">
+          <a href="#about" data-section="about" class="dropdown-toggle">About</a>
+          <ul class="dropdown-menu">
+            <li><a href="#team" data-section="team">Team</a></li>
+          </ul>
+        </li>
         <li><a href="#contact" data-section="contact">Contact</a></li>
       </ul>
     </nav>
@@ -64,21 +71,30 @@
       <h2>Layanan Kami</h2>
       <div class="glass-container">
         <div class="main-card">
-          <div class="card-grid">
-            <div class="inner-card">
-              <div class="service-icon">🎨</div>
-              <h3>Desain Grafis</h3>
-              <p>Logo, banner, flyer, brosur, ID card, dan lainnya.</p>
+          <div class="container">
+            <div class="box">
+              <span></span>
+              <div class="content">
+                <img class="icon" src="images/graphic-designer.png" alt="graphic-designer">
+                <h3>Desain Grafis</h3>
+                <p>Logo, banner, flyer, brosur, ID card, dan lainnya.</p>
+              </div>
             </div>
-            <div class="inner-card">
-              <div class="service-icon">💻</div>
-              <h3>Web Design</h3>
-              <p>Website sesuai kebutuhan dengan UI/UX modern dan responsif.</p>
+            <div class="box">
+              <span></span>
+              <div class="content">
+                <img class="icon" src="images/laptop.png" alt="laptop">
+                <h3>Web Design</h3>
+                <p>Website sesuai kebutuhan dengan UI/UX modern dan responsif.</p>
+              </div>
             </div>
-            <div class="inner-card">
-              <div class="service-icon">📹</div>
-              <h3>Video Editing</h3>
-              <p>Editing video profesional untuk bisnis dan momen spesial anda.</p>
+            <div class="box">
+              <span></span>
+              <div class="content">
+                <img class="icon" src="images/handy-cam.png" alt="handy-cam">
+                <h3>Video Editing</h3>
+                <p>Editing video profesional untuk bisnis dan momen spesial anda.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -188,51 +204,51 @@
           <div class="card-grid">
             <div class="nft">
               <div class='main'>
-                <img class='tokenImage' src="images/work/1.png" alt="NFT" />
+                <img class='tokenImage' src="images/work/1.png"/>
               </div>
             </div>
             <div class="nft">
               <div class='main'>
-                <img class='tokenImage' src="images/work/2.png" alt="NFT" />
+                <img class='tokenImage' src="images/work/2.png"/>
               </div>
             </div>
             <div class="nft">
               <div class='main'>
-                <img class='tokenImage' src="images/work/3.png" alt="NFT" />
-              </div>
-            </div>
-          </div>
-          <div class="card-grid">
-            <div class="nft">
-              <div class='main'>
-                <img class='tokenImage' src="images/work/4.png" alt="NFT" />
-              </div>
-            </div>
-            <div class="nft">
-              <div class='main'>
-                <img class='tokenImage' src="images/work/5.png" alt="NFT" />
-              </div>
-            </div>
-            <div class="nft">
-              <div class='main'>
-                <img class='tokenImage' src="images/work/6.png" alt="NFT" />
+                <img class='tokenImage' src="images/work/3.png"/>
               </div>
             </div>
           </div>
           <div class="card-grid">
             <div class="nft">
               <div class='main'>
-                <img class='tokenImage' src="images/work/7.png" alt="NFT" />
+                <img class='tokenImage' src="images/work/4.png"/>
               </div>
             </div>
             <div class="nft">
               <div class='main'>
-                <img class='tokenImage' src="images/work/8.png" alt="NFT" />
+                <img class='tokenImage' src="images/work/5.png"/>
               </div>
             </div>
             <div class="nft">
               <div class='main'>
-                <img class='tokenImage' src="images/work/9.png" alt="NFT" />
+                <img class='tokenImage' src="images/work/6.png"/>
+              </div>
+            </div>
+          </div>
+          <div class="card-grid">
+            <div class="nft">
+              <div class='main'>
+                <img class='tokenImage' src="images/work/7.png"/>
+              </div>
+            </div>
+            <div class="nft">
+              <div class='main'>
+                <img class='tokenImage' src="images/work/8.png"/>
+              </div>
+            </div>
+            <div class="nft">
+              <div class='main'>
+                <img class='tokenImage' src="images/work/9.png"/>
               </div>
             </div>
           </div>
@@ -245,17 +261,17 @@
             <div class="card-grid">
               <div class="inner-card">
                 <h3>Dealer Suzuki Cimone</h3>
-                <img class='tokenImage' src="images/work/suz.png" alt="NFT" />
+                <img class='portfol' src="images/work/suz.png"/>
                 <p>Branding & desain grafis promosi.</p>
               </div>
               <div class="inner-card">
                 <h3>Klinik Prita Medika</h3>
-                <img class='tokenImage' src="images/work/prit.png" alt="NFT" />
+                <img class='portfol' src="images/work/prit.png"/>
                 <p>Identitas visual & kebutuhan media sosial.</p>
               </div>
               <div class="inner-card">
                 <h3>Wijaya Travel Agen</h3>
-                <img class='tokenImage' src="images/work/trav.png" alt="NFT" />
+                <img class='portfol' src="images/work/trav.png"/>
                 <p>Logo dan media promosi digital.</p>
               </div>
             </div>
@@ -335,21 +351,72 @@
       </div>
     </section>
 
-    <!-- Team -->
+    <!-- About -->
+    <section id="about" class="section">
+      <h2>About</h2>
+       <div class="glass-container">
+        <div class="main-card">
+          <div class="card-grid">
+            <div class="inner-card">
+              <p class="text-body">
+                Jasa Kami
+                Designing, Developing, and
+                Innovating for people like you...
+
+                <p>Kami ingin berguna bagi semua orang dengan cara mendesain membangun dan berinovasi. Tentunya dengan kualitas yang baik.
+                Bagaimana Kita Memulai Ini
+                </p>
+                <p>Logians adalah agensi desain grafis dan pengembangan website yang berdedikasi untuk membantu klien mencapai visibilitas maksimal di dunia digital. Kami menggabungkan kreativitas dengan teknologi untuk menciptakan solusi desain yang unik dan profesional, mulai dari branding, pembuatan logo, materi promosi, hingga website yang responsif dan fungsional.
+                </p>
+                <p>Dengan tim yang berpengalaman di bidang desain grafis dan pengembangan web, kami berkomitmen untuk menghadirkan hasil yang tidak hanya menarik secara visual tetapi juga meningkatkan performa bisnis Anda di dunia digital.
+                Mengapa Memilih Kami?
+                </p>
+                <p>Kreativitas yang Tak Terbatas: Kami membawa ide-ide baru yang segar untuk setiap proyek, memastikan setiap desain dan website yang kami hasilkan benar-benar unik dan mencerminkan karakteristik merek Anda. Profesionalisme dan Kualitas: Kami menjaga standar tinggi dalam setiap langkah pengerjaan, mulai dari konsep hingga implementasi akhir. Setiap detail diperhatikan dengan cermat. Pengalaman dan Keahlian: Dengan pengalaman bertahun-tahun di industri desain dengan menyesuaikan kebutuhan pasar. Kolaborasi dengan Klien: Kami bekerja secara kolaboratif dengan klien untuk memastikan bahwa visi dan harapan Anda diwujudkan dengan tepat. Hasil yang Terukur: Selain menghasilkan karya visual yang menawan, kami juga fokus pada hasil yang nyata, seperti peningkatan konversi, engagement, dan visibilitas merek di platform digital.
+                </p>
+              </p>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- about -->
     <section id="team" class="section">
       <h2>Tim Kami</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>Virdos Kurniawan</h3>
-          <p>Artist</p>
-        </div>
-        <div class="service-card">
-          <h3>Eki Ifnu Aji</h3>
-          <p>Developer</p>
-        </div>
-        <div class="service-card">
-          <h3>Didit Ramadhan</h3>
-          <p>Graphic Designer</p>
+       <div class="glass-container">
+        <div class="main-card">
+          <div class="card-grid">
+            <div class="team">
+              <h3>Virdos Kurniawan</h3>
+              <img src="images/work/dozq.jpg" alt="Team">
+              <p>Artist</p>
+              <div>
+                <button style="background:#4267B2;"><i class="fa fa-facebook"></i></button>
+                <button style="background:#1DA1F2;"><i class="fa fa-twitter"></i></button>
+                <button style="background:#e4405f;"><i class="fa fa-instagram"></i></button>
+              </div>
+            </div>
+            <div class="team">
+              <h3>Eki Ifnu Aji</h3>
+              <img src="images/work/gw.jpg" alt="Team">
+              <p>Developer</p>
+              <div>
+                <button style="background:#4267B2;"><i class="fa fa-facebook"></i></button>
+                <button style="background:#1DA1F2;"><i class="fa fa-twitter"></i></button>
+                <button style="background:#e4405f;"><i class="fa fa-instagram"></i></button>
+              </div>
+            </div>
+            <div class="team">
+              <h3>Didit Ramadhan</h3>
+              <img src="images/work/didit.jpg" alt="Team">
+              <p>Graphic Designer</p>
+              <div>
+                <button style="background:#4267B2;"><i class="fa fa-facebook"></i></button>
+                <button style="background:#1DA1F2;"><i class="fa fa-twitter"></i></button>
+                <button style="background:#e4405f;"><i class="fa fa-instagram"></i></button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -362,22 +429,22 @@
           <div class="card-grid">
             <div class="inner-card">
               <h3>Email</h3>
-              <img src="images/email.png" alt="email">
+              <img class="icon" src="images/email.png" alt="email">
               <p>logians@gmail.com</p>
             </div>
             <div class="inner-card">
               <h3>WhatsApp</h3>
-              <img src="images/whatsapp.png" alt="whatsapp">
+              <img class="icon" src="images/whatsapp.png" alt="whatsapp">
               <p>+62 812 8201 1123</p>
             </div>
             <div class="inner-card">
               <h3>Instagram</h3>
-              <img src="images/instagram.png" alt="instagram">
+              <img class="icon" src="images/instagram.png" alt="instagram">
               <p>@logians_net</p>
             </div>
             <div class="inner-card">
               <h3>Alamat</h3>
-              <img src="images/map.png" alt="map">
+              <img class="icon" src="images/map.png" alt="map">
               <p>Jl. Gajah Tunggal No.40, Tangerang, Banten</p>
             </div>
           </div>

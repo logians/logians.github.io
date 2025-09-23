@@ -439,3 +439,27 @@ document.addEventListener('DOMContentLoaded', () => {
   // jalan otomatis tiap 3 detik
   setInterval(showNextSlide, 3000);
 });
+
+// ambil semua elemen dengan class .team
+const cards = document.querySelectorAll(".team");
+
+cards.forEach((card) => {
+  card.addEventListener("mousemove", (e) => {
+    let rect = card.getBoundingClientRect();
+    let x = e.clientX - rect.left;
+    let y = e.clientY - rect.top;
+
+    // efek tilt
+    let rotateY = ((x / rect.width) - 0.5) * 20;
+    let rotateX = ((y / rect.height) - 0.5) * -20;
+    card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+
+    // update posisi kilau (pakai CSS var)
+    card.style.setProperty("--mx", `${x}px`);
+    card.style.setProperty("--my", `${y}px`);
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "rotateY(0deg) rotateX(0deg)";
+  });
+});
