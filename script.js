@@ -428,16 +428,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const slides = document.querySelectorAll(".slide");
   let index = 0;
 
-  function showNextSlide() {
-    index++;
-    if (index >= slides.length) {
-      index = 0;
+  if (slider && slides.length > 0) {
+    console.log("Slider init, slides found:", slides.length);
+    function showNextSlide() {
+      index++;
+      if (index >= slides.length) {
+        index = 0;
+        slider.style.transition = 'none';
+        slider.style.transform = `translateX(0)`;
+        setTimeout(() => {
+          slider.style.transition = 'transform 0.5s ease';
+          showNextSlide();
+        }, 50);
+        return;
+      }
+      slider.style.transform = `translateX(${-index * 100}%)`;
     }
-    slider.style.transform = `translateX(${-index * 100}%)`;
-  }
 
-  // jalan otomatis tiap 3 detik
-  setInterval(showNextSlide, 3000);
+    setInterval(showNextSlide, 3000);
+  } else {
+    console.error("Slider atau slides tidak ditemukan!");
+  }
 });
 
 // ambil semua elemen dengan class .team
