@@ -1108,7 +1108,7 @@ nav a.active {
   width: 100%; /* biar penuh, ga kepotong 90% */
   padding: 1rem;
 }
-.maskot .main .tokenImage {
+.maskot .main .maskotImage {
   border-radius: 0.5rem;
   width: 100%;     /* isi penuh parent */
   height: 250px;
